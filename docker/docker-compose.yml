@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+            - 8080:80
+        volumes:
+            - ../:/app
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ../var/nginx/log/:/var/log/nginx/
+        depends_on:
+            - app
+    app:
+        container_name: app
+        build:
+            context: php
+            args:
+                UID: ${UID}
+                GID: ${GID}
+        user: '${UID}:${GID}'
+        volumes:
+            - ../:/app
+        environment:
+            - PHP_IDE_CONFIG=serverName=docker
+        depends_on:
+            - mysql
+            - rabbitmq
+            - redis
+    mysql:
+        container_name: mysql
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=test
+        ports:
+            - 33061:3306
+        volumes:
+            - ./mysql1:/var/lib/mysql
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:latest
+    redis:
+        container_name: redis
+        image: redis:latest
+        volumes:
+            - ../var/redis/:/data
+        ports:
+            - 6379:6379
+
+networks:
+    default:
+        name: network

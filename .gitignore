@@ -1,0 +1,16 @@
+
+###> symfony/framework-bundle ###
+/docker/.env
+/.env
+/.idea
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/docker/mysql
+/docker/redis
+/docker/rabbitmq
+/var/
+/vendor/
+###< symfony/framework-bundle ###

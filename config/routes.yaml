@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+#    product_list:
+#        path: '/products'
+#        controller: App\Controller\ProductController::list
+#        methods: [ 'GET' ]
+    type: attribute

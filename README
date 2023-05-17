@@ -1,5 +1,5 @@
 TODO List
-Technical for DRUM'N'CODE  task by Dominishyn Oleksandr
+Technical for DRUM'N'CODE task by Dominishyn Oleksandr
 
 Install project:
 ./docker/docker-compose up -d --build
